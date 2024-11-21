@@ -1,8 +1,8 @@
-<div class="hero-card-list" (click)="selectHero( hero)">
+<div class="hero-card-list" (click)="selectHero(hero)">
   <div class="hero-card-list__image">
     <img [src]="hero.images[0]" [alt]="hero.name" />
   </div>
-  <div class="hero-card-list__bio">{{ hero.bio }}</div>
+  <div class="hero-card-list__bio"><span>{{ hero.name }}:</span> {{ hero.bio }}</div>
   <div class="hero-card-list__actions">
     <button
       class="hero-card-list__actions-button hero-card-list__actions-button--delete"
