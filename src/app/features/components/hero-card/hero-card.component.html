@@ -1,0 +1,25 @@
+<div
+  class="hero-card"
+  (mouseenter)="isHovered = true"
+  (mouseleave)="isHovered = false"
+>
+  <div class="hero-card__image">
+    <img
+      src="https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/8126579-amazing_spider-man_vol_5_54_stormbreakers_variant_textless.jpg"
+      alt="hero"
+      [ngStyle]="{ transform: isHovered ? 'scale(1.2)' : 'scale(1)' }"
+    />
+  </div>
+  <div class="hero-card__info">
+    <div
+      class="hero-card__info-shadow-background"
+      [ngStyle]="{ height: isHovered ? '100%' : '5px' }"
+    ></div>
+    <div class="hero-card__info-name">Spider Man</div>
+    <div class="hero-card__info-biography">
+      With spider-like abilities, science genius Peter Parker swings above it
+      all as Spider-Man, costumed champion of the innocent who lives and fights
+      with the wisdom of “With Great Power Comes Great Responsibility!”
+    </div>
+  </div>
+</div>
