@@ -1,0 +1,38 @@
+<div class="hero-details-modal">
+  <h2 class="hero-details-modal__title" mat-dialog-title>{{ hero.name }}</h2>
+  <mat-dialog-content>
+    <div class="embla" #track>
+      <div class="embla__container">
+        @for (heroImg of hero.images; track $index) {
+        <div class="embla__slide">
+          <img class="embla__slide-img" [src]="heroImg" [alt]="hero.name" />
+        </div>
+        }
+      </div>
+    </div>
+    <p>
+      {{ hero.bio }}
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions class="hero-details-modal__actions">
+    <button
+      class="hero-details-modal__actions-button hero-details-modal__actions-button--secondary"
+      mat-dialog-close
+      cdkFocusInitial
+    >
+      Cancelar
+    </button>
+    <button
+      class="hero-details-modal__actions-button hero-details-modal__actions-button--primary"
+      [mat-dialog-close]="true"
+    >
+      Editar
+    </button>
+    <button
+      class="hero-details-modal__actions-button hero-details-modal__actions-button--danger"
+      [mat-dialog-close]="true"
+    >
+      Borrar
+    </button>
+  </mat-dialog-actions>
+</div>

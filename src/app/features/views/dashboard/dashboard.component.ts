@@ -24,7 +24,9 @@ export class DashboardComponent {
       id: 23,
       name: 'Rogue',
       images: [
-        'https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/8126579-amazing_spider-man_vol_5_54_stormbreakers_variant_textless.jpg',
+        'https://static.wikia.nocookie.net/marvel-dc/images/2/2b/217758fsKqnCyJ.jpg/revision/latest?cb=20200720091728',
+        'https://www.sideshow.com/storage/product-images/500607U/rogue_marvel_feature.jpg',
+        'https://ironusa.vtexassets.com/arquivos/ids/213699/070481_1.jpg?v=638508804041100000',
       ],
       bio: 'Without the capacity to control her mutant ability to absorb memories and powers, the young woman known as Rogue walks a dark path. However, Rogue successfully redeems herself as a heroine and becomes a leader among the X-Men and the Avengers.',
     },
@@ -32,7 +34,7 @@ export class DashboardComponent {
       id: 32,
       name: 'Spiderman',
       images: [
-        'https://comicvine.gamespot.com/a/uploads/scale_small/11144/111442876/8796700-fojcppsviamguq3.jfif.jpg',
+        'https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/8126579-amazing_spider-man_vol_5_54_stormbreakers_variant_textless.jpg',
       ],
       bio: 'With spider-like abilities, science genius Peter Parker swings above it all as Spider-Man, costumed champion of the innocent who lives and fights with the wisdom of “With Great Power Comes Great Responsibility!”',
     },
