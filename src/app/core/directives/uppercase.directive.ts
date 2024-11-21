@@ -1,17 +1,17 @@
-import { Directive, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[Uppercase]',
 })
-export class UppercaseDirective implements AfterViewInit {
+export class UppercaseDirective {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  ngAfterViewInit(): void {
-    const textContent = this.el.nativeElement.textContent;
+  @HostListener('input', ['$event.target.value'])
+  onInputChange(value: string): void {
     this.renderer.setProperty(
       this.el.nativeElement,
-      'textContent',
-      textContent.toUpperCase(),
+      'value',
+      value.toUpperCase()
     );
   }
 }
