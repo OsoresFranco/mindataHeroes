@@ -1,0 +1,20 @@
+<div class="hero-card-list" (click)="selectHero( hero)">
+  <div class="hero-card-list__image">
+    <img [src]="hero.images[0]" [alt]="hero.name" />
+  </div>
+  <div class="hero-card-list__bio">{{ hero.bio }}</div>
+  <div class="hero-card-list__actions">
+    <button
+      class="hero-card-list__actions-button hero-card-list__actions-button--delete"
+      (click)="onDelete($event)"
+    >
+      <i class="fa fa-trash"></i>
+    </button>
+    <button
+      class="hero-card-list__actions-button hero-card-list__actions-button--edit"
+      (click)="onEdit($event)"
+    >
+      <i class="fa fa-edit"></i>
+    </button>
+  </div>
+</div>

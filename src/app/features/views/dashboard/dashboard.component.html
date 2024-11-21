@@ -13,10 +13,20 @@
       (viewModeChange)="onViewModeChange($event)"
     >
     </app-paginator>
-    <div class="dashboard__main-section-grid">
-      @for (hero of heroes; track hero.id) {
+
+    <div
+      class="dashboard__main-section-grid"
+      [ngClass]="{
+        'dashboard__main-section-grid--list': currentViewMode === 'list'
+      }"
+    >
+      @for (hero of heroes; track hero.id) { @if (currentViewMode === 'grid') {
       <app-hero-card [hero]="hero"></app-hero-card>
-      }
+      }@else {
+
+      <app-hero-card-list [hero]="hero"></app-hero-card-list>
+
+      }}
     </div>
   </div>
 </div>

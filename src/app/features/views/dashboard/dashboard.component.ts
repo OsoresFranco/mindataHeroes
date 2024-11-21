@@ -7,6 +7,8 @@ import { ToolbarComponent } from '../../../shared/components/toolbar/toolbar.com
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { PaginatorComponent } from '../../../shared/components/paginator/paginator.component';
 import { SearchBarService } from '../../../core/services/search-bar.service';
+import { HeroCardListComponent } from '../../components/hero-card-list/hero-card-list.component';
+import { CoreModule } from '../../../core/core.module';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +18,8 @@ import { SearchBarService } from '../../../core/services/search-bar.service';
     ToolbarComponent,
     SearchBarComponent,
     PaginatorComponent,
+    HeroCardListComponent,
+    CoreModule,
   ],
   providers: [HeroService],
   templateUrl: './dashboard.component.html',
