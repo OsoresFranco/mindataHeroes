@@ -3,7 +3,7 @@
     <img src="images/logo.png" alt="Logo App" />
   </div>
   <div class="toolbar__actions">
-    <button class="toolbar__actions-button" (click)="onAdd()">Add Hero</button>
+    <button class="toolbar__actions-button" (click)="onAdd()">  {{ "ADD_HERO" | translate }}</button>
     <ng-content select="[searchBar]"></ng-content>
   </div>
 </div>

@@ -8,12 +8,12 @@
     <!-- Name Field -->
 
     <div class="dynamic-form__formulary-field">
-      <label class="dynamic-form__formulary-field-label" for="Name">Name</label>
+      <label class="dynamic-form__formulary-field-label" for="Name">{{ "NAME" | translate }}</label>
       <input
         id="Name"
         class="dynamic-form__formulary-field-text"
         formControlName="name"
-        placeholder="Enter hero's Name"
+        placeholder="{{'ENTER_HERO_NAME' | translate}}"
         type="text"
         Uppercase
       />
@@ -21,23 +21,23 @@
         *ngIf="heroForm.get('name')?.invalid && heroForm.get('name')?.touched"
       >
         <small *ngIf="heroForm.get('name')?.errors?.['required']">
-          Name is required.
+          {{ "NAME_REQUIRED" | translate }}
         </small>
       </div>
     </div>
 
     <!-- Bio Field -->
     <div class="dynamic-form__formulary-field">
-      <label class="dynamic-form__formulary-field-label" for="bio">Bio</label>
+      <label class="dynamic-form__formulary-field-label" for="bio">{{ "BIO" | translate }}</label>
       <textarea
         id="bio"
         class="dynamic-form__formulary-field-textarea"
         formControlName="bio"
-        placeholder="Enter hero's biography"
+        placeholder="{{'ENTER_HERO_BIO' | translate}}"
       ></textarea>
       <div *ngIf="heroForm.get('bio')?.invalid && heroForm.get('bio')?.touched">
         <small *ngIf="heroForm.get('bio')?.errors?.['required']">
-          Bio is required.
+          {{ "BIO_REQUIRED" | translate }}
         </small>
       </div>
     </div>
@@ -45,7 +45,7 @@
     <!-- Pictures Field -->
     <div formArrayName="images" class="dynamic-form__formulary-field">
       <label class="dynamic-form__formulary-field-label" for="pictures"
-        >Pictures</label
+        >{{ "PICTURES" | translate }}</label
       >
       @for (picture of pictures.controls; track $index) {
       <div class="dynamic-form__formulary-field-pictures">
@@ -66,7 +66,7 @@
           type="button"
           (click)="removePicture($index)"
         >
-          Remove
+        {{ "REMOVE" | translate }}
         </button>
       </div>
       <!-- Error Message for Picture Field -->
@@ -75,7 +75,7 @@
         class="dynamic-form__formulary-field-pictures-error"
         *ngIf="picture.errors?.['required']"
       >
-        Picture URL is required.
+      {{ "PICTURE_REQUIRED" | translate }}
       </small>
       } }
     </div>
@@ -85,7 +85,7 @@
       type="button"
       (click)="addPicture()"
     >
-      Add Picture
+    {{ "ADD_PICTURE" | translate }}
     </button>
     }
 
@@ -94,7 +94,7 @@
       type="submit"
       [disabled]="heroForm.invalid"
     >
-      Submit
+    {{ "SUBMIT" | translate }}
     </button>
   </form>
 </div>

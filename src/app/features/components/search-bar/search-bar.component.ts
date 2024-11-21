@@ -3,10 +3,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SearchBarService } from '../../../core/services/search-bar.service';
 import { Subscription } from 'rxjs';
+import { CoreModule } from '../../../core/core.module';
 
 @Component({
   selector: 'app-search-bar',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CoreModule],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
   standalone: true,

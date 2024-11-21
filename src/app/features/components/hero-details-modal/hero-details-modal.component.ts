@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { HeroService } from '../../services/hero.service';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-hero-details-modal',
@@ -29,7 +30,8 @@ export class HeroDetailsModalComponent implements OnInit {
     private router: Router,
     private heroService: HeroService,
     private dialog: MatDialog,
-    private snackBarService: SnackbarService
+    private snackBarService: SnackbarService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -47,7 +49,9 @@ export class HeroDetailsModalComponent implements OnInit {
   onDelete(): void {
     const modalRef = this.dialog.open(ConfirmationModalComponent, {
       data: {
-        message: 'Are you sure you want to delete this hero?',
+        message: this.translateService.instant(
+          'ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_HERO'
+        ),
       },
     });
 
@@ -56,7 +60,7 @@ export class HeroDetailsModalComponent implements OnInit {
         this.heroService.deleteHero(this.hero.id).subscribe({
           next: () => {
             this.snackBarService.openSnackbar(
-              'Hero deleted successfully',
+              this.translateService.instant('HERO_DELETED_SUCCESSFULY'),
               'Ok'
             );
             this.heroService.updateEmitter();

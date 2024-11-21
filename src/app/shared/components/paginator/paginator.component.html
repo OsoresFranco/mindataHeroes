@@ -1,7 +1,7 @@
 <div class="paginator">
   <div class="paginator__view-mode-toggle">
     <button class="paginator__view-mode-toggle-button" (click)="toggleViewMode()">
-      View Mode: {{ viewMode === 'grid' ? 'Grid' : 'List' }}
+      {{'VIEW_MODE' | translate}} {{ viewMode === 'grid' ? 'Grid' : 'List' }}
     </button>
   </div>
 
@@ -11,23 +11,23 @@
       [disabled]="page === 1"
       (click)="changePage(page - 1)"
     >
-      Previous
+    {{'PREVIOUS' | translate}}
     </button>
     <span class="paginator__pagination-controls-text">
-      Page {{ page }} of {{ totalPages }}
+      {{'PAGE' | translate}} {{ page }} {{'OF' | translate}} {{ totalPages }}
     </span>
     <button
       class="paginator__pagination-controls-button"
       [disabled]="page === totalPages"
       (click)="changePage(page + 1)"
     >
-      Next
+    {{'NEXT' | translate}}
     </button>
   </div>
 
   <div class="paginator__items-per-page">
     <label class="paginator__items-per-page-label" for="perPage">
-      Items per page:
+      {{'ITEMS_PER_PAGE' | translate}}:
     </label>
     <select
       id="perPage"

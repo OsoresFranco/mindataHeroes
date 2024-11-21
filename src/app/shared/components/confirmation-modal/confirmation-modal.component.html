@@ -1,7 +1,7 @@
 <div class="confirmation-modal">
   <div class="confirmation-modal__message">{{message}}</div>
   <mat-dialog-actions class="confirmation-modal__actions">
-    <button class="confirmation-modal__actions-button confirmation-modal__actions-button--cancel" mat-dialog-close>Cancel</button>
-    <button class="confirmation-modal__actions-button confirmation-modal__actions-button--confirm" [mat-dialog-close]="true" cdkFocusInitial>Confirm</button>
+    <button class="confirmation-modal__actions-button confirmation-modal__actions-button--cancel" mat-dialog-close>{{'CANCEL' | translate}}</button>
+    <button class="confirmation-modal__actions-button confirmation-modal__actions-button--confirm" [mat-dialog-close]="true" cdkFocusInitial>{{'CONFIRM' | translate}}</button>
   </mat-dialog-actions>
 </div>

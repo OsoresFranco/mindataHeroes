@@ -11,6 +11,7 @@ import { CoreModule } from '../../../core/core.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HeroService } from '../../services/hero.service';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -30,7 +31,8 @@ export class DynamicFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private heroService: HeroService,
-    private snackBarService: SnackbarService
+    private snackBarService: SnackbarService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +46,8 @@ export class DynamicFormComponent implements OnInit {
     if (this.id) {
       this.heroService.getHeroById(this.id).subscribe({
         next: (hero) => {
-          this.title = `Edit ${hero.name}`;
+          const titleAction = this.translateService.instant('EDIT');
+          this.title = `${titleAction} ${hero.name}`;
           this.isEditing = true;
           this.heroForm.patchValue({
             id: hero.id,
@@ -59,7 +62,7 @@ export class DynamicFormComponent implements OnInit {
         },
       });
     } else {
-      this.title = `Create a Hero`;
+      this.title = this.translateService.instant('CREATE_HERO');
     }
   }
 
