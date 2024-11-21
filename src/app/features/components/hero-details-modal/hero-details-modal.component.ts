@@ -13,6 +13,7 @@ import { CoreModule } from '../../../core/core.module';
 import { Router } from '@angular/router';
 import { HeroService } from '../../services/hero.service';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { SnackbarService } from '../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-hero-details-modal',
@@ -28,7 +29,8 @@ export class HeroDetailsModalComponent implements OnInit {
   constructor(
     private router: Router,
     private heroService: HeroService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBarService: SnackbarService
   ) {
     console.log(this.hero);
   }
@@ -55,8 +57,11 @@ export class HeroDetailsModalComponent implements OnInit {
       next: (res) => {
         if (res) {
           this.heroService.deleteHero(this.hero.id).subscribe({
-            next: (res) => {
-              console.log(res);
+            next: () => {
+              this.snackBarService.openSnackbar(
+                'Hero deleted successfully',
+                'Ok'
+              );
             },
           });
         }

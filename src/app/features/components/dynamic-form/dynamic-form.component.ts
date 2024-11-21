@@ -10,6 +10,7 @@ import {
 import { CoreModule } from '../../../core/core.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HeroService } from '../../services/hero.service';
+import { SnackbarService } from '../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -28,7 +29,8 @@ export class DynamicFormComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private heroService: HeroService
+    private heroService: HeroService,
+    private snackBarService: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -99,6 +101,7 @@ export class DynamicFormComponent implements OnInit {
   onCreateHero(): void {
     this.heroService.createHero(this.heroForm.value).subscribe({
       next: () => {
+        this.snackBarService.openSnackbar('Hero succesfully created', 'Ok');
         this.redirectToDashboard();
       },
     });
@@ -108,6 +111,7 @@ export class DynamicFormComponent implements OnInit {
       .updateHero(this.heroForm.get('id')?.value, this.heroForm.value)
       .subscribe({
         next: () => {
+          this.snackBarService.openSnackbar('Hero updated successfully', 'Ok');
           this.redirectToDashboard();
         },
       });
