@@ -1,0 +1,48 @@
+.confirmation-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+  text-align: center;
+  color: #333;
+  &__message {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    &-button {
+      padding: 0.5rem 1.5rem;
+      border: none;
+      transform: skew(-20deg);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &--cancel {
+        background-color: #ffffff;
+        color: #d32f2f;
+        border: 2px solid #d32f2f;
+      }
+
+      &--confirm {
+        background-color: #d32f2f;
+        color: #fff;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

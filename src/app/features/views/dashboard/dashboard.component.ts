@@ -49,14 +49,14 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllheroes(): void {
-    this.heroService
-      .getAllHeroes(this.currentPage, this.itemsPerPage, this.searchTerm)
-      .subscribe({
-        next: (res) => {
-          this.heroes = res.items;
-          this.itemsTotal = res.itemsTotal;
-        },
-      });
+    // this.heroService
+    //   .getAllHeroes(this.currentPage, this.itemsPerPage, this.searchTerm)
+    //   .subscribe({
+    //     next: (res) => {
+    //       this.heroes = res.items;
+    //       this.itemsTotal = res.itemsTotal;
+    //     },
+    //   });
   }
 
   onPageChange(newPage: number): void {

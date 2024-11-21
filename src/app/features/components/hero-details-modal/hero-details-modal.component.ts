@@ -6,12 +6,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SharedModule } from '../../../shared/shared.module';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Hero } from '../../models/HeroI.interface';
 import EmblaCarousel from 'embla-carousel';
 import { CoreModule } from '../../../core/core.module';
 import { Router } from '@angular/router';
 import { HeroService } from '../../services/hero.service';
+import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-hero-details-modal',
@@ -24,7 +25,11 @@ export class HeroDetailsModalComponent implements OnInit {
   @ViewChild('track', { static: true }) protected track!: ElementRef<any>;
   hero: Hero = inject(MAT_DIALOG_DATA);
 
-  constructor(private router: Router, private heroService: HeroService) {
+  constructor(
+    private router: Router,
+    private heroService: HeroService,
+    private dialog: MatDialog
+  ) {
     console.log(this.hero);
   }
 
@@ -41,9 +46,20 @@ export class HeroDetailsModalComponent implements OnInit {
   }
 
   onDelete(): void {
-    this.heroService.deleteHero(this.hero.id).subscribe({
+    const modalRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: 'Are you sure you want to delete this hero?',
+      },
+    });
+    modalRef.afterClosed().subscribe({
       next: (res) => {
-        console.log(res);
+        if (res) {
+          this.heroService.deleteHero(this.hero.id).subscribe({
+            next: (res) => {
+              console.log(res);
+            },
+          });
+        }
       },
     });
   }
