@@ -11,6 +11,12 @@ This project is a web application built with Angular that allows users to browse
 * **Update Heroes:** Modify existing hero information.
 * **Delete Heroes:** Remove heroes from the collection.
 
+## Pending Work
+* **Change all hardcoded styles to vars**
+* **Use of state Manager**
+* **Refactor on search method**
+
+
 
 ## Getting Started
 
