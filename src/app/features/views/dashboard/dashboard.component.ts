@@ -3,10 +3,12 @@ import { HeroBannerComponent } from '../../components/hero-banner/hero-banner.co
 import { HeroCardComponent } from '../../components/hero-card/hero-card.component';
 import { Hero } from '../../models/HeroI.interface';
 import { HeroService } from '../../services/hero.service';
+import { ToolbarComponent } from "../../../shared/components/toolbar/toolbar.component";
+import { SearchBarComponent } from "../../components/search-bar/search-bar.component";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [HeroBannerComponent, HeroCardComponent],
+  imports: [HeroBannerComponent, HeroCardComponent, ToolbarComponent, SearchBarComponent],
   providers: [HeroService],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

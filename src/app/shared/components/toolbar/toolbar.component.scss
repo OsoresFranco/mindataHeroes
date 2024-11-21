@@ -1,0 +1,16 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(148, 0, 0);
+  padding: 1rem;
+
+  &__logo {
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+}
