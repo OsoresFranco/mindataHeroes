@@ -1,17 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Hero } from '../models/HeroI.interface';
+import { HeroResponseI } from '../models/HeroResponseI.interface';
 
 @Injectable()
 export class HeroService {
   private readonly apiUrl =
     'https://x8ki-letl-twmt.n7.xano.io/api:Ldswh5fJ/hero';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
-  getAllHeroes(heroName: string = ''): Observable<Hero[]> {
-    return this.http.get<Hero[]>(`${this.apiUrl}?hero_name=${heroName}`);
+  getAllHeroes(
+    page: number,
+    per_page: number,
+    heroName: string = ''
+  ): Observable<HeroResponseI> {
+    return this.http.get<HeroResponseI>(
+      `${this.apiUrl}?hero_name=${heroName}&page=${page}&per_page=${per_page}`
+    );
   }
 
   getHeroById(id: number): Observable<Hero> {
