@@ -24,5 +24,7 @@
   "SUBMIT": "Enviar",
   "CREATE_HERO": "Crear un héroe",
   "ENTER_HERO_NAME": "Ingresa el nombre del heroe",
-  "ENTER_HERO_BIO": "Ingresa la bio del heroe"
+  "ENTER_HERO_BIO": "Ingresa la bio del heroe",
+  "GRID": "Grilla",
+  "LIST": "Lista"
 }

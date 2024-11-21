@@ -14,12 +14,15 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'mindataHeroes';
 
+  currentLang: string = localStorage.getItem('lang') ?? 'en';
+
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
+    this.translate.setDefaultLang(this.currentLang);
+    this.translate.use(this.currentLang);
   }
 
   switchLanguage(lang: string) {
     this.translate.use(lang);
+    localStorage.setItem('lang', this.currentLang);
   }
 }

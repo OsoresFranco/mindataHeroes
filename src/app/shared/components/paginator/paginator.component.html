@@ -1,7 +1,7 @@
 <div class="paginator">
   <div class="paginator__view-mode-toggle">
     <button class="paginator__view-mode-toggle-button" (click)="toggleViewMode()">
-      {{'VIEW_MODE' | translate}} {{ viewMode === 'grid' ? 'Grid' : 'List' }}
+      {{ 'VIEW_MODE' | translate }} {{ viewMode === 'grid' ? ('GRID' | translate) : ('LIST' | translate) }}
     </button>
   </div>
 

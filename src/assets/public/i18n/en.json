@@ -24,5 +24,7 @@
   "SUBMIT": "Submit",
   "CREATE_HERO": "Create a hero",
   "ENTER_HERO_NAME": "Enter hero's name",
-  "ENTER_HERO_BIO": "Enter hero's biography"
+  "ENTER_HERO_BIO": "Enter hero's biography",
+  "GRID": "Grid",
+  "LIST": "List"
 }

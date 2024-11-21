@@ -3,7 +3,22 @@
     <img src="images/logo.png" alt="Logo App" />
   </div>
   <div class="toolbar__actions">
-    <button class="toolbar__actions-button" (click)="onAdd()">  {{ "ADD_HERO" | translate }}</button>
+    <button class="toolbar__actions-button" (click)="onAdd()">
+      {{ "ADD_HERO" | translate }}
+    </button>
     <ng-content select="[searchBar]"></ng-content>
+    <div class="toolbar__language-selector">
+      <i class="toolbar__language-selector-icon fa fa-globe"></i>
+      <select
+        id="language"
+        class="toolbar__language-dropdown"
+        [(ngModel)]="currentLanguage"
+        (change)="switchLanguage($event)"
+      >
+        <option *ngFor="let lang of supportedLanguages" [value]="lang">
+          {{ lang.toUpperCase() }}
+        </option>
+      </select>
+    </div>
   </div>
 </div>
