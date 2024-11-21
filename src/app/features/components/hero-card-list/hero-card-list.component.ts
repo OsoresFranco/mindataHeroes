@@ -41,14 +41,12 @@ export class HeroCardListComponent {
   }
 
   onEdit(event: Event): void {
-    // Stop event propagation
     event.stopPropagation();
 
     this.router.navigate([`/forms/${this.hero.id}`]);
   }
 
   onDelete(event: Event): void {
-    // Stop event propagation
     event.stopPropagation();
     const modalRef = this.dialog.open(ConfirmationModalComponent, {
       data: {
