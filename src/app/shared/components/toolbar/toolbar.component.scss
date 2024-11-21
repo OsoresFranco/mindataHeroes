@@ -13,4 +13,24 @@
       object-position: center;
     }
   }
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    &-button {
+      width: 130px;
+      padding: 10px 20px;
+      outline: none;
+      border-radius: 2px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transform: skew(-20deg);
+      color: white;
+      background-color: rgb(140, 0, 255);
+      &:hover {
+        background-color: rgb(156, 38, 253);
+      }
+    }
+  }
 }
