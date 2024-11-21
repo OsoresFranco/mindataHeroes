@@ -1,19 +1,20 @@
+@import '../../../../assets/styles/vars.scss';
+
 .confirmation-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  background-color: #ffffff;
+  padding: $spacing-lg;
+  background-color: $light-color;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  font-family: "Arial", sans-serif;
+  box-shadow: $box-shadow-md;
   text-align: center;
-  color: #333;
+  color: $dark-color;
   &__message {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-lg;
   }
 
   &__actions {
@@ -22,22 +23,22 @@
     width: 100%;
 
     &-button {
-      padding: 0.5rem 1.5rem;
+      padding: $spacing-sm $spacing-lg;
       border: none;
       transform: skew(-20deg);
-      font-size: 1rem;
+      font-size: $font-size-md;
       cursor: pointer;
       transition: background-color 0.3s ease;
 
       &--cancel {
-        background-color: #ffffff;
-        color: #d32f2f;
-        border: 2px solid #d32f2f;
+        background-color: $light-color;
+        color: $danger-color;
+        border: 2px solid $danger-color;
       }
 
       &--confirm {
-        background-color: #d32f2f;
-        color: #fff;
+        background-color: $danger-color;
+        color: $light-color;
       }
 
       &:hover {

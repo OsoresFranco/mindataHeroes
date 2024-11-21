@@ -1,9 +1,11 @@
+@import "../../../../assets/styles/vars.scss";
+
 .toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgb(148, 0, 0);
-  padding: 1rem;
+  background: $primary-color;
+  padding: $spacing-md;
 
   &__logo {
     img {
@@ -15,21 +17,21 @@
   }
   &__actions {
     display: flex;
-    gap: 1rem;
+    gap: $spacing-md;
     &-button {
       width: 130px;
       padding: 10px 20px;
       outline: none;
       border-radius: 2px;
-      font-size: 16px;
+      font-size: $font-size-md;
       font-weight: bold;
       border: none;
       cursor: pointer;
       transform: skew(-20deg);
-      color: white;
-      background-color: rgb(140, 0, 255);
+      color: $light-color;
+      background-color: $accent-color;
       &:hover {
-        background-color: rgb(156, 38, 253);
+        opacity: 0.8;
       }
     }
   }

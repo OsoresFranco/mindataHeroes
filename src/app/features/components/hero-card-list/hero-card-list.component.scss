@@ -1,17 +1,19 @@
+@import "../../../../assets/styles/vars.scss";
+
 .hero-card-list {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background-color: #f9f9f9;
+  background-color: $light-color;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow-lg;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: $box-shadow-lg;
     transform: translateY(-3px);
   }
 
@@ -27,7 +29,7 @@
 
   &__bio {
     flex: 1;
-    font-size: 0.9rem;
+    font-size: $font-size-md;
     line-height: 1.4;
     max-height: calc(1.4rem * 3);
     overflow: hidden;
@@ -36,8 +38,8 @@
     line-clamp: 3;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
-    margin-left: 1rem;
-    color: #555;
+    margin-left: $spacing-md;
+    color: $dark-color;
     span {
       font-weight: bold;
     }
@@ -52,21 +54,21 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0.5rem;
+      padding: $spacing-sm;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background-color 0.3s ease, transform 0.3s ease;
-      color: #333;
+      color: $dark-color;
 
       i {
-        font-size: 1.2rem;
+        font-size: $font-size-lg;
       }
 
       &:hover {
-        background-color: #f0f0f0;
-        color: #8a005c;
+        background-color: $light-color;
+        color: $primary-color;
         transform: scale(1.1);
       }
 
@@ -75,11 +77,11 @@
       }
 
       &--delete {
-        color: #d32f2f;
+        color: $danger-color;
       }
 
       &--edit {
-        color: #1976d2;
+        color: $accent-color;
       }
     }
   }
