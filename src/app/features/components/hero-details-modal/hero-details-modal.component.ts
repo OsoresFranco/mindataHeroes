@@ -18,7 +18,6 @@ import { SnackbarService } from '../../../shared/services/snackbar.service';
 @Component({
   selector: 'app-hero-details-modal',
   imports: [SharedModule, CoreModule],
-  providers: [HeroService],
   templateUrl: './hero-details-modal.component.html',
   styleUrl: './hero-details-modal.component.scss',
 })
@@ -31,9 +30,7 @@ export class HeroDetailsModalComponent implements OnInit {
     private heroService: HeroService,
     private dialog: MatDialog,
     private snackBarService: SnackbarService
-  ) {
-    console.log(this.hero);
-  }
+  ) {}
 
   ngOnInit() {
     const options: Partial<any> = {
@@ -53,19 +50,19 @@ export class HeroDetailsModalComponent implements OnInit {
         message: 'Are you sure you want to delete this hero?',
       },
     });
-    modalRef.afterClosed().subscribe({
-      next: (res) => {
-        if (res) {
-          this.heroService.deleteHero(this.hero.id).subscribe({
-            next: () => {
-              this.snackBarService.openSnackbar(
-                'Hero deleted successfully',
-                'Ok'
-              );
-            },
-          });
-        }
-      },
+
+    modalRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.heroService.deleteHero(this.hero.id).subscribe({
+          next: () => {
+            this.snackBarService.openSnackbar(
+              'Hero deleted successfully',
+              'Ok'
+            );
+            this.heroService.updateEmitter();
+          },
+        });
+      }
     });
   }
 }

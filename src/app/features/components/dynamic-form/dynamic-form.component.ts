@@ -15,7 +15,7 @@ import { SnackbarService } from '../../../shared/services/snackbar.service';
 @Component({
   selector: 'app-dynamic-form',
   imports: [CoreModule, ReactiveFormsModule, FormsModule],
-  providers: [HeroService],
+
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss',
 })

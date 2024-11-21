@@ -1,15 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Hero } from '../models/HeroI.interface';
 import { HeroResponseI } from '../models/HeroResponseI.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class HeroService {
   private readonly apiUrl =
     'https://x8ki-letl-twmt.n7.xano.io/api:Ldswh5fJ/hero';
 
   constructor(private readonly http: HttpClient) {}
+
+  private readonly updateSubject = new BehaviorSubject<string>('asd');
+  isUpdated$ = this.updateSubject.asObservable();
+
+  updateEmitter(): void {
+    const hash = Math.random().toString();
+    this.updateSubject.next(hash);
+  }
 
   getAllHeroes(
     page: number,

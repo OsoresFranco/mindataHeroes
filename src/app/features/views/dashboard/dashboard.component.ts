@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeroBannerComponent } from '../../components/hero-banner/hero-banner.component';
 import { HeroCardComponent } from '../../components/hero-card/hero-card.component';
 import { Hero } from '../../models/HeroI.interface';
@@ -9,6 +9,7 @@ import { PaginatorComponent } from '../../../shared/components/paginator/paginat
 import { SearchBarService } from '../../../core/services/search-bar.service';
 import { HeroCardListComponent } from '../../components/hero-card-list/hero-card-list.component';
 import { CoreModule } from '../../../core/core.module';
+import { skip, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,18 +22,19 @@ import { CoreModule } from '../../../core/core.module';
     HeroCardListComponent,
     CoreModule,
   ],
-  providers: [HeroService],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   standalone: true,
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   heroes: Hero[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 5;
   itemsTotal: number = 0;
   currentViewMode: 'grid' | 'list' = 'grid';
   searchTerm: string = '';
+  updateSub$: Subscription = new Subscription();
+  searchSub$: Subscription = new Subscription();
 
   constructor(
     private heroService: HeroService,
@@ -40,12 +42,20 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllheroes();
     this.getCurrentSearchTerm();
+    this.subscribeToUpdate();
+  }
+
+  subscribeToUpdate() {
+    this.updateSub$ = this.heroService.isUpdated$.pipe(skip(1)).subscribe({
+      next: () => {
+        this.getAllheroes();
+      },
+    });
   }
 
   getCurrentSearchTerm(): void {
-    this.searchBarService.searchValue$.subscribe((value) => {
+    this.searchSub$ = this.searchBarService.searchValue$.subscribe((value) => {
       this.searchTerm = value;
       this.currentPage = 1;
       this.getAllheroes();
@@ -75,5 +85,10 @@ export class DashboardComponent implements OnInit {
 
   onViewModeChange(newViewMode: 'grid' | 'list'): void {
     this.currentViewMode = newViewMode;
+  }
+
+  ngOnDestroy(): void {
+    this.updateSub$.unsubscribe();
+    this.searchSub$.unsubscribe();
   }
 }

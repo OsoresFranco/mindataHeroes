@@ -16,16 +16,7 @@ import { SnackbarService } from '../../../shared/services/snackbar.service';
   styleUrl: './hero-card-list.component.scss',
 })
 export class HeroCardListComponent {
-  @Input() hero: Hero = {
-    id: 10,
-    name: 'White Tiger',
-    bio: 'Ava grew up idolizing her older brother Hector, who had used ancient amulets to become the White Tiger. When she inherits the amulets after his death, Ava takes up the mantle with pride and vows to remain a protector of the people.',
-    images: [
-      'https://www.themarysue.com/wp-content/uploads/2022/12/white-tiger-mcu-marvel.jpeg?w=1200',
-      'https://cdn.marvel.com/u/prod/marvel/i/mg/b/f0/5faac504437fa/standard_incredible.jpg',
-      'https://cdnb.artstation.com/p/assets/images/images/032/890/837/large/hasan-ahmed-white-tiger-2c.jpg?1607778948',
-    ],
-  };
+  @Input() hero!: Hero;
   isHovered: boolean = false;
   constructor(
     private dialog: MatDialog,
@@ -62,6 +53,7 @@ export class HeroCardListComponent {
                 'Hero deleted successfully',
                 'Ok'
               );
+              this.heroService.updateEmitter();
             },
           });
         }
