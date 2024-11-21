@@ -1,0 +1,111 @@
+.dynamic-form {
+  padding: 1rem;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &__formulary {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &-field {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.5rem;
+      &-label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: rgb(36, 36, 36);
+      }
+      &-text,
+      &-textarea {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      &-text {
+        width: 100%;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      &-textarea {
+        resize: vertical;
+        max-height: 100px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      &-pictures {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 5px;
+        height: 100px;
+        &-input {
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        &-thumbnail {
+          height: 100%;
+          max-width: 100px;
+          min-width: 100px;
+          object-fit: cover;
+          object-position: center;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        &-error {
+          margin-top: 5px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  &__button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &--remove {
+      border: 2px solid red;
+      color: red;
+      background-color: transparent;
+    }
+
+    &--add {
+      border: 2px solid rgb(129, 0, 119);
+      color: rgb(129, 0, 119);
+      background-color: transparent;
+    }
+
+    &--confirm {
+      color: white;
+      background: rgb(129, 0, 119);
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: grey;
+      }
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  small {
+    color: red;
+    font-size: 0.75rem;
+  }
+}

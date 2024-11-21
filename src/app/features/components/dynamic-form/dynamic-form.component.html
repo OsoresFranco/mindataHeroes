@@ -1,0 +1,99 @@
+<div class="dynamic-form">
+  <div class="dynamic-form__title">{{ title }}</div>
+  <form
+    class="dynamic-form__formulary"
+    [formGroup]="heroForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- Name Field -->
+
+    <div class="dynamic-form__formulary-field">
+      <label class="dynamic-form__formulary-field-label" for="Name">Name</label>
+      <input
+        id="Name"
+        class="dynamic-form__formulary-field-text"
+        formControlName="name"
+        placeholder="Enter hero's Name"
+        type="text"
+      />
+      <div
+        *ngIf="heroForm.get('name')?.invalid && heroForm.get('name')?.touched"
+      >
+        <small *ngIf="heroForm.get('name')?.errors?.['required']">
+          Name is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Bio Field -->
+    <div class="dynamic-form__formulary-field">
+      <label class="dynamic-form__formulary-field-label" for="bio">Bio</label>
+      <textarea
+        id="bio"
+        class="dynamic-form__formulary-field-textarea"
+        formControlName="bio"
+        placeholder="Enter hero's biography"
+      ></textarea>
+      <div *ngIf="heroForm.get('bio')?.invalid && heroForm.get('bio')?.touched">
+        <small *ngIf="heroForm.get('bio')?.errors?.['required']">
+          Bio is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Pictures Field -->
+    <div formArrayName="images" class="dynamic-form__formulary-field">
+      <label class="dynamic-form__formulary-field-label" for="pictures"
+        >Pictures</label
+      >
+      @for (picture of pictures.controls; track $index) {
+      <div class="dynamic-form__formulary-field-pictures">
+        <input
+          type="text"
+          class="dynamic-form__formulary-field-pictures-input"
+          [formControlName]="$index"
+          placeholder="Enter picture URL"
+        />
+        <img
+          [src]="picture.value"
+          class="dynamic-form__formulary-field-pictures-thumbnail"
+          alt="preview thumbnail"
+          *ngIf="picture.value"
+        />
+        <button
+          class="dynamic-form__button dynamic-form__button--remove"
+          type="button"
+          (click)="removePicture($index)"
+        >
+          Remove
+        </button>
+      </div>
+      <!-- Error Message for Picture Field -->
+      @if (picture.invalid && picture.touched) {
+      <small
+        class="dynamic-form__formulary-field-pictures-error"
+        *ngIf="picture.errors?.['required']"
+      >
+        Picture URL is required.
+      </small>
+      } }
+    </div>
+    @if (pictures.controls.length < 5) {
+    <button
+      class="dynamic-form__button dynamic-form__button--add"
+      type="button"
+      (click)="addPicture()"
+    >
+      Add Picture
+    </button>
+    }
+
+    <button
+      class="dynamic-form__button dynamic-form__button--confirm"
+      type="submit"
+      [disabled]="heroForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

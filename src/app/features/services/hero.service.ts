@@ -18,15 +18,15 @@ export class HeroService {
     return this.http.get<Hero>(`${this.apiUrl}/${id}`);
   }
 
-  create(payload: Hero): Observable<Hero> {
+  createHero(payload: Hero): Observable<Hero> {
     return this.http.post<Hero>(`${this.apiUrl}`, payload);
   }
 
-  update(id: number, payload: Hero): Observable<Hero> {
-    return this.http.put<Hero>(`${this.apiUrl}/${id}`, payload);
+  updateHero(id: number, payload: Hero): Observable<Hero> {
+    return this.http.patch<Hero>(`${this.apiUrl}/${id}`, payload);
   }
 
-  delete(id: number): Observable<void> {
+  deleteHero(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
