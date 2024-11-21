@@ -9,10 +9,11 @@ import { SharedModule } from '../../../shared/shared.module';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Hero } from '../../models/HeroI.interface';
 import EmblaCarousel from 'embla-carousel';
+import { CoreModule } from '../../../core/core.module';
 
 @Component({
   selector: 'app-hero-details-modal',
-  imports: [SharedModule],
+  imports: [SharedModule, CoreModule],
   templateUrl: './hero-details-modal.component.html',
   styleUrl: './hero-details-modal.component.scss',
 })
