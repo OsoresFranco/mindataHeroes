@@ -8,7 +8,7 @@ import {
   FormsModule,
 } from '@angular/forms';
 import { CoreModule } from '../../../core/core.module';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeroService } from '../../services/hero.service';
 
 @Component({
@@ -27,6 +27,7 @@ export class DynamicFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private heroService: HeroService
   ) {}
 
@@ -91,10 +92,14 @@ export class DynamicFormComponent implements OnInit {
     }
   }
 
+  redirectToDashboard(): void {
+    this.router.navigate(['/']);
+  }
+
   onCreateHero(): void {
     this.heroService.createHero(this.heroForm.value).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: () => {
+        this.redirectToDashboard();
       },
     });
   }
@@ -102,8 +107,8 @@ export class DynamicFormComponent implements OnInit {
     this.heroService
       .updateHero(this.heroForm.get('id')?.value, this.heroForm.value)
       .subscribe({
-        next: (response) => {
-          console.log(response);
+        next: () => {
+          this.redirectToDashboard();
         },
       });
   }
