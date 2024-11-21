@@ -6,6 +6,7 @@ import { HeroService } from '../../services/hero.service';
 import { ToolbarComponent } from '../../../shared/components/toolbar/toolbar.component';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { PaginatorComponent } from '../../../shared/components/paginator/paginator.component';
+import { SearchBarService } from '../../../core/services/search-bar.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,16 +28,29 @@ export class DashboardComponent implements OnInit {
   itemsPerPage: number = 5;
   itemsTotal: number = 0;
   currentViewMode: 'grid' | 'list' = 'grid';
+  searchTerm: string = '';
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    private readonly searchBarService: SearchBarService
+  ) {}
 
   ngOnInit(): void {
     this.getAllheroes();
+    this.getCurrentSearchTerm();
+  }
+
+  getCurrentSearchTerm(): void {
+    this.searchBarService.searchValue$.subscribe((value) => {
+      this.searchTerm = value;
+      this.currentPage = 1;
+      this.getAllheroes();
+    });
   }
 
   getAllheroes(): void {
     // this.heroService
-    //   .getAllHeroes(this.currentPage, this.itemsPerPage)
+    //   .getAllHeroes(this.currentPage, this.itemsPerPage, this.searchTerm)
     //   .subscribe({
     //     next: (res) => {
     //       this.heroes = res.items;
@@ -47,12 +61,12 @@ export class DashboardComponent implements OnInit {
 
   onPageChange(newPage: number): void {
     this.currentPage = newPage;
-    this.getAllheroes()
+    this.getAllheroes();
   }
 
   onPerPageChange(newPerPage: number): void {
     this.itemsPerPage = newPerPage;
-    this.getAllheroes()
+    this.getAllheroes();
   }
 
   onViewModeChange(newViewMode: 'grid' | 'list'): void {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Hero } from '../models/HeroI.interface';
 import { HeroResponseI } from '../models/HeroResponseI.interface';
 

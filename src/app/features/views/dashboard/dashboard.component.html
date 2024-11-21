@@ -1,20 +1,22 @@
-<app-toolbar>
-  <app-search-bar searchBar></app-search-bar>
-</app-toolbar>
-<div style="margin: 1rem">
-  <app-paginator
-    [page]="currentPage"
-    [perPage]="itemsPerPage"
-    [totalItems]="itemsTotal"
-    [viewMode]="currentViewMode"
-    (pageChange)="onPageChange($event)"
-    (perPageChange)="onPerPageChange($event)"
-    (viewModeChange)="onViewModeChange($event)"
-  >
-  </app-paginator>
-  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
-    @for (hero of heroes; track hero.id) {
-    <app-hero-card [hero]="hero"></app-hero-card>
-    }
+<div class="dashboard">
+  <app-toolbar>
+    <app-search-bar searchBar></app-search-bar>
+  </app-toolbar>
+  <div class="dashboard__main-section">
+    <app-paginator
+      [page]="currentPage"
+      [perPage]="itemsPerPage"
+      [totalItems]="itemsTotal"
+      [viewMode]="currentViewMode"
+      (pageChange)="onPageChange($event)"
+      (perPageChange)="onPerPageChange($event)"
+      (viewModeChange)="onViewModeChange($event)"
+    >
+    </app-paginator>
+    <div class="dashboard__main-section-grid">
+      @for (hero of heroes; track hero.id) {
+      <app-hero-card [hero]="hero"></app-hero-card>
+      }
+    </div>
   </div>
 </div>
