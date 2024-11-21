@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CoreModule } from '../../../core/core.module';
+import { Hero } from '../../models/HeroI.interface';
 
 @Component({
   selector: 'app-hero-card',
@@ -8,5 +9,6 @@ import { CoreModule } from '../../../core/core.module';
   styleUrl: './hero-card.component.scss',
 })
 export class HeroCardComponent {
+  @Input() hero!: Hero;
   isHovered: boolean = false;
 }
