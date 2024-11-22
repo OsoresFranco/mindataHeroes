@@ -11,7 +11,6 @@ export class SearchBarService {
   constructor() {}
 
   setSearchValue(value: string): void {
-    console.log('asd')
     this.searchValueSubject.next(value);
   }
 }

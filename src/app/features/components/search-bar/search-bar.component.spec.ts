@@ -11,10 +11,8 @@ describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
   let fixture: ComponentFixture<SearchBarComponent>;
   let searchBarService: jasmine.SpyObj<SearchBarService>;
-  let mockValueChanges: Subject<string>;
 
   beforeEach(() => {
-    // Mock TranslateService
     const mockTranslateService = jasmine.createSpyObj('TranslateService', [
       'instant',
       'get',
