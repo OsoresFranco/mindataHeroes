@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { CoreModule } from '../../../core/core.module';
 import { Hero } from '../../models/HeroI.interface';
 import { SharedModule } from '../../../shared/shared.module';
-import { Dialog } from '@angular/cdk/dialog';
 import { HeroDetailsModalComponent } from '../hero-details-modal/hero-details-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 
