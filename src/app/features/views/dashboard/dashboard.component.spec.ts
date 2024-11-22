@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { of } from 'rxjs';
 import { SearchBarService } from '../../../core/services/search-bar.service';
 import { HeroService } from '../../services/hero.service';
-import { HttpClientModule } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -12,18 +12,26 @@ describe('DashboardComponent', () => {
   let searchBarService: jasmine.SpyObj<SearchBarService>;
 
   beforeEach(() => {
+    const mockTranslateService = jasmine.createSpyObj('TranslateService', [
+      'instant',
+      'get',
+      'use',
+      'setDefaultLang'
+    ]);
     const searchBarSpy = jasmine.createSpyObj('SearchBarService', [
       'searchValue$',
     ]);
     const heroServiceSpy = jasmine.createSpyObj('HeroService', [
       'getAllHeroes',
     ]);
+    
 
     TestBed.configureTestingModule({
-      imports: [DashboardComponent, HttpClientModule],
+      imports: [DashboardComponent],
       providers: [
         { provide: SearchBarService, useValue: searchBarSpy },
         { provide: HeroService, useValue: heroServiceSpy },
+        { provide: TranslateService, useValue: mockTranslateService },
       ],
     }).compileComponents();
 

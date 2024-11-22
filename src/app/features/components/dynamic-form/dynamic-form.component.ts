@@ -42,7 +42,6 @@ export class DynamicFormComponent implements OnInit {
 
   formHasValue(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-
     if (this.id) {
       this.heroService.getHeroById(this.id).subscribe({
         next: (hero) => {

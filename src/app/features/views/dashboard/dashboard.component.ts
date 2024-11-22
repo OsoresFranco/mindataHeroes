@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HeroBannerComponent } from '../../components/hero-banner/hero-banner.component';
 import { HeroCardComponent } from '../../components/hero-card/hero-card.component';
 import { Hero } from '../../models/HeroI.interface';
 import { HeroService } from '../../services/hero.service';
@@ -14,7 +13,6 @@ import { skip, Subscription } from 'rxjs';
 @Component({
   selector: 'app-dashboard',
   imports: [
-    HeroBannerComponent,
     HeroCardComponent,
     ToolbarComponent,
     SearchBarComponent,
