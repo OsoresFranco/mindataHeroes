@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
 import { HeroCardComponent } from './hero-card.component';
 import { MatDialog } from '@angular/material/dialog';
-import { HeroDetailsModalComponent } from '../hero-details-modal/hero-details-modal.component';
 import { HttpClient } from '@angular/common/http';
 import { HeroService } from '../../services/hero.service';
 

@@ -4,8 +4,8 @@ import { SearchBarService } from '../../../core/services/search-bar.service';
 import { HeroService } from '../../services/hero.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SearchBarComponent } from './search-bar.component';
-import { Subject, Subscription } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import {  Subscription } from 'rxjs';
+
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;

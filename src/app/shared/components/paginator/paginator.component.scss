@@ -81,9 +81,8 @@
     }
   }
 
-  /* Media Queries for Responsiveness */
   @media (max-width: 768px) {
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
     align-items: stretch;
 
     &__view-mode-toggle {
