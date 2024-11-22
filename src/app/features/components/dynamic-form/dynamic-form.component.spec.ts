@@ -27,14 +27,22 @@ describe('DynamicFormComponent', () => {
       'use',
       'setDefaultLang',
     ]);
+    
     mockHeroService = jasmine.createSpyObj('HeroService', [
       'updateHero',
       'createHero',
+      'getHeroById'
     ]);
     mockSnackBarService = jasmine.createSpyObj('SnackBarService', [
       'openSnackbar',
     ]);
-    mockActivatedRoute = jasmine.createSpyObj('ActivatedRoute', ['snapshot']);
+    mockActivatedRoute = jasmine.createSpyObj('ActivatedRoute', [], {
+      snapshot: {
+        paramMap: {
+          get: () => '1',
+        },
+      },
+    });
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
@@ -152,5 +160,96 @@ describe('DynamicFormComponent', () => {
     const imagesControl = component.heroForm.get('images');
     expect(imagesControl).toBeInstanceOf(FormArray);
     expect((imagesControl as FormArray).length).toBe(0);
+  });
+
+  it('should remove the picture at the specified index', () => {
+    component.heroForm = new FormBuilder().group({
+      id: [1],
+      name: ['Superman', [Validators.required]],
+      bio: ['Testing bio', [Validators.required]],
+      images: new FormArray([
+        new FormBuilder().control('img1.jpg'),
+        new FormBuilder().control('img2.jpg'),
+        new FormBuilder().control('img3.jpg'),
+      ]),
+    });
+    const imagesControl = component.heroForm.get('images') as FormArray;
+  
+    expect(imagesControl.length).toBe(3);
+  
+    component.removePicture(1);
+  
+    expect(imagesControl.length).toBe(2);
+    expect(imagesControl.at(0).value).toBe('img1.jpg');
+    expect(imagesControl.at(1).value).toBe('img3.jpg');
+  });
+
+  it('should add a picture control to the FormArray if length is less than 5', () => {
+    component.heroForm = new FormBuilder().group({
+      id: [1],
+      name: ['Superman', [Validators.required]],
+      bio: ['Testing bio', [Validators.required]],
+      images: new FormArray([]),
+    });
+    component.addPicture();
+    component.addPicture();
+    component.addPicture();
+    const imagesControl = component.heroForm.get('images') as FormArray;
+    expect(imagesControl.length).toBe(3);
+  });
+  
+  it('should not add a picture control if FormArray length is 5 or more', () => {
+    component.heroForm = new FormBuilder().group({
+      id: [1],
+      name: ['Superman', [Validators.required]],
+      bio: ['Testing bio', [Validators.required]],
+      images: new FormArray([
+        new FormBuilder().control('img1.jpg', Validators.required),
+        new FormBuilder().control('img2.jpg', Validators.required),
+        new FormBuilder().control('img3.jpg', Validators.required),
+        new FormBuilder().control('img4.jpg', Validators.required),
+        new FormBuilder().control('img5.jpg', Validators.required),
+      ]),
+    });
+    component.addPicture();
+    const imagesControl = component.heroForm.get('images') as FormArray;
+    expect(imagesControl.length).toBe(5);
+  });
+
+  it('should return the FormArray of images from the form', () => {
+    component.heroForm = new FormBuilder().group({
+      id: [1],
+      name: ['Superman', [Validators.required]],
+      bio: ['Testing bio', [Validators.required]],
+      images: new FormArray([
+        new FormBuilder().control('img1.jpg', Validators.required),
+        new FormBuilder().control('img2.jpg', Validators.required),
+      ]),
+    });
+    const imagesControl = component.pictures;
+
+    expect(imagesControl).toBeInstanceOf(FormArray);
+    expect(imagesControl.length).toBe(2);
+    expect(imagesControl.at(0).value).toBe('img1.jpg');
+    expect(imagesControl.at(1).value).toBe('img2.jpg');
+  });
+
+  it('should initialize form with hero data if ID is present', () => {
+    const mockHero = {
+      id: 1,
+      name: 'Superman',
+      bio: 'Man of Steel',
+      images: [],
+    };
+    
+  
+    mockHeroService.getHeroById.and.returnValue(of(mockHero));
+
+    component.formHasValue();
+
+    expect(component.heroForm.get('id')?.value).toBe(1);
+    expect(component.heroForm.get('name')?.value).toBe('Superman');
+    expect(component.heroForm.get('bio')?.value).toBe('Man of Steel');
+    expect(component.isEditing).toBeTrue();
   });
 });
